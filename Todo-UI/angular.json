@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -88,6 +89,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -119,6 +121,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Todo-UI"
+    }
+  },
+  "defaultProject": "Todo-UI",
+  "cli": {
+    "analytics": "9526610a-d6dd-4355-8e0c-aef6f169c04a"
+  }
 }
