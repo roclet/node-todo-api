@@ -1,0 +1,4 @@
+#main-outlet {
+  margin-top: 80px;
+  min-height: calc(100vh - 300px);
+}
