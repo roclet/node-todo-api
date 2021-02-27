@@ -6,14 +6,15 @@ import {environment} from '../../../environments/environment';
   providedIn: 'root'
 })
 export class UserService {
-
-  apiSecret = environment.API_SECRET;
   apiUrl = environment.APIurl;
-  headers: HttpHeaders;
   constructor(private http: HttpClient) {
-    this.headers = new HttpHeaders({ 'API_SECRET': this.apiSecret });
   }
+
   register(requestBody){
-    return this.http.post(`${this.apiUrl}register`, requestBody, {headers: this.headers});
+    return this.http.post(`${this.apiUrl}register`, requestBody);
+  }
+
+  login(requestBody){
+    return this.http.post(`${this.apiUrl}login`, requestBody);
   }
 }

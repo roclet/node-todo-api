@@ -23,16 +23,19 @@
   <h2>Welcome</h2>
   <p>Here are some links to help you get started:</p>
   <div class="card-container">
-    <a class="card">
+    <a [routerLink]="['/register']" class="card">
         Register
     </a>
-    <a class="card">
+    <a [routerLink]="['/login']" class="card">
       <span>Login</span>
     </a>
   </div>
-  <div id="main-outlet">
+  <div>
     <router-outlet></router-outlet>
   </div>
+<!--  <div id="main-outlet">-->
+<!--    <router-outlet></router-outlet>-->
+<!--  </div>-->
   <!-- Footer -->
   <footer>
   </footer>

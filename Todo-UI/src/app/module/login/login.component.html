@@ -1,1 +1,30 @@
-<p>login works!</p>
+<div class="container">
+  <form [formGroup]="loginForm">
+    <label for="yemail">Email</label>
+    <input type="email" id="yemail" name="yemail" formControlName="email" placeholder="Your email..">
+    <label for="ypassword">Password</label>
+    <input type="password" id="ypassword" name="ypassword" formControlName="email" placeholder="Your password..">
+    <div class="input-group-prepend" (click)="showPassword = !showPassword">
+                                        <span class="input-group-text" id="addon-wrapping">
+                                            <i *ngIf="!showPassword" class="far fa-eye"></i>
+                                            <i *ngIf="showPassword" class="far fa-eye-slash"></i>
+                                        </span>
+    </div>
+    <div class="error-msg" *ngIf="loginForm.get('password').errors &&
+                                            loginForm.get('password').touched">
+                                                <span [hidden]="!loginForm.get('password').errors.pattern">
+                                                    Invalid Password (Note: Minimum eight characters, at least one uppercase and
+                                                    lowercase letter, one number and one special character ([#?!@$%^&*-) )</span>
+      <span [hidden]="!loginForm.get('password').errors.required">
+                                                    Password is required</span>
+      <span [hidden]="!loginForm.get('password').errors.maxlength">
+                                                    Password should not exceed
+        {{loginForm.get('password').errors.maxlength?.requiredLength}}
+        characters, You have entered
+        {{loginForm.get('password').errors.maxlength?.actualLength}}
+        characters</span>
+    </div>
+    <input type="submit" (click)="login()"
+           [disabled]="loginForm.get('email').invalid && loginForm.get('password').invalid" value="Submit">
+  </form>
+</div>

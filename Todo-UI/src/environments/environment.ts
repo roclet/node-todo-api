@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API_SECRET : 'super-secret-secret',
+  // API_SECRET : 'super-secret-secret',
   APIurl: 'http://localhost:3000/',
 };
 
