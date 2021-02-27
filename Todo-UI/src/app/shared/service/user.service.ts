@@ -13,4 +13,7 @@ export class UserService {
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders({ 'API_SECRET': this.apiSecret });
   }
+  register(requestBody){
+    return this.http.post(`${this.apiUrl}register`, requestBody, {headers: this.headers});
+  }
 }
