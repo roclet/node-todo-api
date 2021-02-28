@@ -1,6 +1,6 @@
 <div class="container">
     <label for="taskName">Task Name</label>
     <input type="text" id="taskName" name="taskName" [(ngModel)]="taskModel.task" maxlength="100" #taskname="ngModel" placeholder="Your email..">
-    <input type="submit" (click)="addtask()" value="Submit">
+    <input type="submit" (click)="addTaskAndEdit()" value="Submit">
 
 </div>

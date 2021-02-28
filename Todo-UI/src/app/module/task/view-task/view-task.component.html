@@ -19,11 +19,11 @@
       <td>{{task.updatedAt}}</td>
       <td>{{task.completed}}</td>
       <td>
-        <input type="button" (click)="addTask()"
+        <input type="button" (click)="deleteTask(task.id)"
                value="Delete">
       </td>
       <td>
-        <input type="submit" (click)="addTask()"
+        <input type="submit" (click)="editTask(task.id)"
                value="Edit">
       </td>
     </tr>

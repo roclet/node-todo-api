@@ -26,11 +26,23 @@ export class ViewTaskComponent implements OnInit {
   ngOnInit(): void {}
   getTasks() {
     this.taskervice.getTasks().subscribe((data) => {
-      console.log('data xxxx', data);
       this.tasks1 = data;
     });
   }
+
   addTask(){
     this.router.navigate(['/mqtask/add']);
+  }
+
+  editTask(id: string){
+    this.router.navigate(['/mqtask/add'], { queryParams: { ID: id } });
+  }
+
+  deleteTask(id: string){
+    const idNumber: string = id.toString();
+    this.taskervice.deleteTask(idNumber).subscribe((data) => {
+      console.log('data zzzz', data);
+      this.getTasks();
+    });
   }
 }
