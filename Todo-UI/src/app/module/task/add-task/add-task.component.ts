@@ -4,6 +4,10 @@ import {TaskModel, TaskPostModel} from '../../../shared/model/task';
 import {UUID} from 'angular2-uuid';
 import {ActivatedRoute, Router} from '@angular/router';
 import {TodoService} from "../../../shared/service/todo.service";
+import {Store} from "@ngrx/store";
+import {AppState} from '../../../app.state';
+import {Observable} from "rxjs";
+import {AddTaskAction, DeleteItemAction} from "../action/tasks.action";
 
 @Component({
   selector: 'app-add-task',
@@ -16,11 +20,11 @@ export class AddTaskComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private store: Store<AppState>,
     private taskervice: TodoService
   ) {
     this.route.queryParams.subscribe(params => {
       this.Id = params['ID'];
-      console.log('this.Id', this.Id);
       if (this.Id){
         this.getTaskById();
       }
@@ -47,13 +51,9 @@ export class AddTaskComponent implements OnInit {
   addtask(){
     this.taskModel.id = UUID.UUID().toString();
     this.taskModel.completed = true;
-    this.taskervice.addTsak(this.taskModel)
-      .subscribe((data) => {
-        if (data) {
-          alert('Successfully add task');
-          this.router.navigate(['/mqtask/list']);
-        }
-      });
+    this.store.dispatch(new AddTaskAction(this.taskModel));
+    alert('Successfully add task');
+    this.router.navigate(['/mqtask/list']);
   }
 
   updateTask(){

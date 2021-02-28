@@ -1,7 +1,8 @@
 import * as fromData from "../action/tasks.action";
+import {TaskModel} from '../../../shared/model/task';
 
 export interface DataState {
-  items: string[];
+  items: TaskModel[];
   loading: boolean;
   error: any;
 }
@@ -40,6 +41,41 @@ export function reducer(
         error: action.payload.error
       };
     }
+
+    case fromData.ActionTypes.ADD_TASK:
+      return {
+        ...state,
+        loading: true
+      }
+    case fromData.ActionTypes.ADD_TASK_SUCCESS:
+      return {
+        ...state,
+        items: [...state.items, action.payload],
+        loading: false
+      };
+    case fromData.ActionTypes.ADD_TASK_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false
+      };
+    case fromData.ActionTypes.DELETE_TASK:
+      return {
+        ...state,
+        loading: true
+      };
+    case fromData.ActionTypes.DELETE_TASK_SUCCESS:
+      return {
+        ...state,
+        items: state.items.filter(item => item.id !== action.payload),
+        loading: false
+      }
+    case fromData.ActionTypes.DELETE_TASK_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false
+      };
 
     default: {
       return state;

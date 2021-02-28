@@ -5,7 +5,13 @@ import { Action } from "@ngrx/store";
 export enum ActionTypes {
   LoadTaskBegin = "[TASK] Load TASK begin",
   LoadTaskSuccess = "[TASK] Load TASK success",
-  LoadTaskFailure = "[TASK] Load TASK failure"
+  LoadTaskFailure = "[TASK] Load TASK failure",
+  ADD_TASK = '[TASK] Add Task',
+  ADD_TASK_SUCCESS = '[TASK] Add Task Success',
+  ADD_TASK_FAILURE = '[TASK] Add Task Failure',
+  DELETE_TASK = '[TASK] Delete Task',
+  DELETE_TASK_SUCCESS = '[TASK] Delete Task Success',
+  DELETE_TASK_FAILURE = '[SHOPPING] Delete Task Failure'
 }
 export class LoadTaskBegin implements Action {
   readonly type = ActionTypes.LoadTaskBegin;
@@ -23,19 +29,45 @@ export class LoadTaskFailure implements Action {
   constructor(public payload: { error: any }) {}
 }
 
-export type ActionsUnion = LoadTaskBegin | LoadTaskSuccess | LoadTaskFailure;
-// export const search = createAction(
-//   '[Products/API] Search is needed',
-//   props<{ query: string }>()
-// );
-//
-//
-// export const searchSuccess = createAction(
-//   '[Products/API] Search Success',
-//   props<{ tasks: TaskModel[] }>()
-// );
-//
-// export const searchFailure = createAction(
-//   '[Products/API] Search Failure',
-//   props<{ errorMsg: string }>()
-// );
+export class AddTaskAction implements Action {
+  readonly type = ActionTypes.ADD_TASK
+
+  constructor(public payload: TaskModel) { }
+}
+export class AddItemSuccessAction implements Action {
+  readonly type = ActionTypes.ADD_TASK_SUCCESS
+
+  constructor(public payload: TaskModel) { }
+}
+export class AddItemFailureAction implements Action {
+  readonly type = ActionTypes.ADD_TASK_FAILURE
+
+  constructor(public payload: Error) { }
+}
+
+export class DeleteItemAction implements Action {
+  readonly type = ActionTypes.DELETE_TASK
+
+  constructor(public payload: string) { }
+}
+
+export class DeleteItemSuccessAction implements Action {
+  readonly type = ActionTypes.DELETE_TASK_SUCCESS
+
+  constructor(public payload: string) { }
+}
+export class DeleteItemFailureAction implements Action {
+  readonly type = ActionTypes.DELETE_TASK_FAILURE
+
+  constructor(public payload: string) { }
+}
+
+export type ActionsUnion = LoadTaskBegin |
+  LoadTaskSuccess |
+  LoadTaskFailure |
+  AddTaskAction |
+  AddItemSuccessAction |
+  AddItemFailureAction |
+  DeleteItemAction |
+  DeleteItemSuccessAction |
+  DeleteItemFailureAction;

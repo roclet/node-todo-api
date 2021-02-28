@@ -5,6 +5,7 @@ import {TaskModel} from '../../../shared/model/task';
 import {AppState} from '../../../app.state';
 import {TodoService} from "../../../shared/service/todo.service";
 import {Router} from "@angular/router";
+import {DeleteItemAction} from "../action/tasks.action";
 
 @Component({
   selector: 'app-view-task',
@@ -30,7 +31,6 @@ export class ViewTaskComponent implements OnInit {
     });
     this.taskervice.getData().subscribe(data => {
       this.tasks1 = data['items'];
-      // console.log(data['items']);
     });
   }
 
@@ -44,9 +44,7 @@ export class ViewTaskComponent implements OnInit {
 
   deleteTask(id: string){
     const idNumber: string = id.toString();
-    this.taskervice.deleteTask(idNumber).subscribe((data) => {
-      console.log('data zzzz', data);
-      this.getTasks();
-    });
+    this.store.dispatch(new DeleteItemAction(idNumber));
+    this.getTasks();
   }
 }
