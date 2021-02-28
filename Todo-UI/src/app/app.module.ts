@@ -26,6 +26,7 @@ import {reducer} from './shared/reducers/task.reducer';
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     StoreModule.forRoot({
       task: reducer
     }),

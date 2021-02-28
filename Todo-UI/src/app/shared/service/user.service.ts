@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   apiUrl = environment.APIurl;
+  loginAs$ = new BehaviorSubject<boolean>(false);
   constructor(private http: HttpClient) {
   }
 
@@ -16,5 +18,9 @@ export class UserService {
 
   login(requestBody){
     return this.http.post(`${this.apiUrl}login`, requestBody);
+  }
+
+  loginAs(isloin: boolean){
+    this.loginAs$.next(isloin);
   }
 }

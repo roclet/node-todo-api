@@ -20,4 +20,15 @@ export class TodoService {
     return this.http.post(`${this.apiUrl}todo`, requestBody);
   }
 
+  getTaskById(id: string){
+    return this.http.get(`${this.apiUrl}todo/${id}`);
+  }
+
+  getTaskUpdate(id: string, requestBody){
+    return this.http.put(`${this.apiUrl}todo/${id}`, requestBody);
+  }
+
+  deleteTask(id: string){
+    return this.http.delete(`${this.apiUrl}todo/${id}`);
+  }
 }

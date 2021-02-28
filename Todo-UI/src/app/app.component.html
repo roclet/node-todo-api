@@ -22,21 +22,24 @@
   <!-- Resources -->
   <h2>Welcome</h2>
   <p>Here are some links to help you get started:</p>
-  <div class="card-container">
-    <a [routerLink]="['/register']" class="card">
+  <div  class="card-container">
+    <a *ngIf="!islogin" [routerLink]="['/register']" class="card">
         Register
     </a>
-    <a [routerLink]="['/login']" class="card">
+    <a *ngIf="!islogin" [routerLink]="['/login']" class="card">
       <span>Login</span>
+    </a>
+
+    <a *ngIf="islogin" [routerLink]="['/login']" class="card">
+      <span>View Task</span>
+    </a>
+    <a *ngIf="islogin" (click)="logout()" class="card">
+      <span>Logout</span>
     </a>
   </div>
   <div>
     <router-outlet></router-outlet>
   </div>
-<!--  <div id="main-outlet">-->
-<!--    <router-outlet></router-outlet>-->
-<!--  </div>-->
-  <!-- Footer -->
   <footer>
   </footer>
 

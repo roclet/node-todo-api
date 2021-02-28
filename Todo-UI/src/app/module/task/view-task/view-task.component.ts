@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import {TaskModel} from '../../../shared/model/task';
 import {AppState} from '../../../app.state';
 import {TodoService} from "../../../shared/service/todo.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-view-task',
@@ -15,10 +16,10 @@ export class ViewTaskComponent implements OnInit {
   tasks1: any;
   constructor(
     private store: Store<AppState>,
+    private router: Router,
     private taskervice: TodoService
     ) {
     this.tasks = store.select('task');
-    console.log('this.tasks', this.tasks);
     this.getTasks();
   }
 
@@ -28,5 +29,8 @@ export class ViewTaskComponent implements OnInit {
       console.log('data xxxx', data);
       this.tasks1 = data;
     });
+  }
+  addTask(){
+    this.router.navigate(['/mqtask/add']);
   }
 }

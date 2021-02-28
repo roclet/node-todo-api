@@ -1,6 +1,8 @@
-<p>view-task works!</p>
 
 <div>
+  <h1>Task List </h1>
+  <input type="submit" (click)="addTask()"
+         value="Add Task">
   <table>
     <tr>
       <th>ID</th>
@@ -8,6 +10,7 @@
       <th>Created</th>
       <th>Update Date</th>
       <th>Completd</th>
+      <th colspan="2">Action</th>
     </tr>
     <tr *ngFor="let task of tasks1">
       <td>{{task.id}}</td>
@@ -15,6 +18,14 @@
       <td>{{task.createdAt}}</td>
       <td>{{task.updatedAt}}</td>
       <td>{{task.completed}}</td>
+      <td>
+        <input type="button" (click)="addTask()"
+               value="Delete">
+      </td>
+      <td>
+        <input type="submit" (click)="addTask()"
+               value="Edit">
+      </td>
     </tr>
   </table>
 </div>

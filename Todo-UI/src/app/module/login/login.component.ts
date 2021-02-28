@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    sessionStorage.clear();
     this.loginForm = this.formBuilder.group({
       password: ['', [Validators.required,  Validators.maxLength(30)]],
       email: ['', [Validators.required, Validators.maxLength(60)]]
@@ -32,10 +33,10 @@ export class LoginComponent implements OnInit {
     userModel.password = this.loginForm.value.password;
     this.userService.login({ email: this.loginForm.value.email, password: this.loginForm.value.password})
       .subscribe((data) => {
-        console.log(data, 'data ***', data['token']);
         if (data['token']) {
           sessionStorage.setItem('userSession', data['token']);
           sessionStorage.setItem('isLogin', 'true');
+          this.userService.loginAs(true);
           if (sessionStorage.getItem('isLogin')){
             this.router.navigate(['/mqtask/list']);
           }

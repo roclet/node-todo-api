@@ -2,30 +2,25 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './module/login/login.component';
 import {RegisterComponent} from './module/register/register.component';
+import {AuthGuard} from "./shared/service/auth-gaurd";
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '',
+    redirectTo: 'login',
     pathMatch: 'full'
-  },
-  {
-    path: '',
-    component: LoginComponent,
-    data: {
-      isLogin: true
-    }
   },
   {
     path: 'login',
     component: LoginComponent,
     data: {
       isLogin: false
-    }
+    },
   },
   {
     path: 'register',
     component: RegisterComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'mqtask',
