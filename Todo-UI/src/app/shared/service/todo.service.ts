@@ -8,7 +8,16 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 export class TodoService {
   apiUrl = environment.APIurl;
   headers: HttpHeaders;
-  constructor() {
+  constructor(private http: HttpClient) {
     this.headers = new HttpHeaders({ 'Authorization': 'Bearer' + sessionStorage.getItem('userSession')});
   }
+
+  getTasks() {
+    return this.http.get(`${this.apiUrl}todo`);
+  }
+
+  addTsak(requestBody){
+    return this.http.post(`${this.apiUrl}todo`, requestBody);
+  }
+
 }

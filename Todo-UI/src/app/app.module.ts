@@ -11,25 +11,24 @@ import {UserService} from './shared/service/user.service';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 // import {LoginReducers} from './module/login/reducers/reducers';
-import { ViewTodosComponent } from './module/view-todos/view-todos.component';
-import { AddTodoComponent } from './module/add-todo/add-todo.component';
 import {TodoService} from './shared/service/todo.service';
 import {BasicAuthInterceptor} from './shared/service/basic-auth.interceptor';
+import {reducer} from './shared/reducers/task.reducer';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    ViewTodosComponent,
-    AddTodoComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
-    // StoreModule.forRoot(LoginReducers),
+    StoreModule.forRoot({
+      task: reducer
+    }),
     ReactiveFormsModule,
     NgbModule,
     AppRoutingModule

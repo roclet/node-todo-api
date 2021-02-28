@@ -26,6 +26,13 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
+  },
+  {
+    path: 'mqtask',
+    loadChildren: () => import('./module/task/task.module').then(m => m.TaskModule),
+    data: {
+      isLogin: true
+    },
   }
 ];
 

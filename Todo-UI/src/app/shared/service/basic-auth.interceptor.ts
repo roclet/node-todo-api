@@ -29,7 +29,7 @@ export class BasicAuthInterceptor implements HttpInterceptor {
   injectToken(request: HttpRequest<any>) {
     return request = request.clone({
       setHeaders: {
-        Authorization: 'Bearer' + `${sessionStorage.getItem('userSession')}`
+        Authorization: 'Bearer ' + `${sessionStorage.getItem('userSession')}`
       }
     });
   }

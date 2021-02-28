@@ -1,0 +1,20 @@
+<p>view-task works!</p>
+
+<div>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Task Name</th>
+      <th>Created</th>
+      <th>Update Date</th>
+      <th>Completd</th>
+    </tr>
+    <tr *ngFor="let task of tasks1">
+      <td>{{task.id}}</td>
+      <td>{{task.task}}</td>
+      <td>{{task.createdAt}}</td>
+      <td>{{task.updatedAt}}</td>
+      <td>{{task.completed}}</td>
+    </tr>
+  </table>
+</div>

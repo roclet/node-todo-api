@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../shared/service/user.service';
 import {Store} from '@ngrx/store';
 import {UserModel} from '../../shared/model/user.model';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,7 @@ export class LoginComponent implements OnInit {
   showPassword: boolean ;
   constructor(private formBuilder: FormBuilder,
               // private store: Store<AuthModel>,
+              private router: Router,
               private userService: UserService
   ) { }
 
@@ -30,7 +32,14 @@ export class LoginComponent implements OnInit {
     userModel.password = this.loginForm.value.password;
     this.userService.login({ email: this.loginForm.value.email, password: this.loginForm.value.password})
       .subscribe((data) => {
-        console.log('data ***', data);
+        console.log(data, 'data ***', data['token']);
+        if (data['token']) {
+          sessionStorage.setItem('userSession', data['token']);
+          sessionStorage.setItem('isLogin', 'true');
+          if (sessionStorage.getItem('isLogin')){
+            this.router.navigate(['/mqtask/list']);
+          }
+        }
       });
   }
 }
