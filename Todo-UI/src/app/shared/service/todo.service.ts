@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import {environment} from '../../../environments/environment';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {AppState, getAllItems, getTaskState} from "../../module/task/reducers";
+import {Store} from "@ngrx/store";
+import * as TaskActions from "../../module/task/action/tasks.action";
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +11,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 export class TodoService {
   apiUrl = environment.APIurl;
   headers: HttpHeaders;
-  constructor(private http: HttpClient) {
+  constructor(private store: Store<AppState>, private http: HttpClient) {
     this.headers = new HttpHeaders({ 'Authorization': 'Bearer' + sessionStorage.getItem('userSession')});
   }
 
@@ -30,5 +33,15 @@ export class TodoService {
 
   deleteTask(id: string){
     return this.http.delete(`${this.apiUrl}todo/${id}`);
+  }
+  load() {
+    this.store.dispatch(new TaskActions.LoadTaskBegin());
+  }
+  getData() {
+    return this.store.select(getTaskState);
+  }
+
+  getItems() {
+    return this.store.select(getAllItems);
   }
 }

@@ -28,6 +28,10 @@ export class ViewTaskComponent implements OnInit {
     this.taskervice.getTasks().subscribe((data) => {
       this.tasks1 = data;
     });
+    this.taskervice.getData().subscribe(data => {
+      this.tasks1 = data['items'];
+      // console.log(data['items']);
+    });
   }
 
   addTask(){

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {UserService} from './shared/service/user.service';
 import { Router, NavigationError, NavigationEnd, NavigationStart } from '@angular/router';
+import {TodoService} from "./shared/service/todo.service";
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ import { Router, NavigationError, NavigationEnd, NavigationStart } from '@angula
 export class AppComponent {
   islogin: boolean = false;
   currentUser = sessionStorage.getItem('isLogin');
-  constructor(private userService: UserService, private router: Router){
+  constructor(private userService: UserService, private taskervice: TodoService, private router: Router){
     if (this.currentUser) {
       this.islogin = true;
     }else{
@@ -20,6 +21,7 @@ export class AppComponent {
         }
       });
     }
+    this.taskervice.load();
   }
 
   logout(){

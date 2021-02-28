@@ -13,7 +13,10 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 // import {LoginReducers} from './module/login/reducers/reducers';
 import {TodoService} from './shared/service/todo.service';
 import {BasicAuthInterceptor} from './shared/service/basic-auth.interceptor';
-import {reducer} from './shared/reducers/task.reducer';
+import {metaReducers, reducers} from "./module/task/reducers";
+import {EffectsModule} from "@ngrx/effects";
+import {effects} from "./module/task/effects";
+// import {reducer} from './shared/reducers/task.reducer';
 
 @NgModule({
   declarations: [
@@ -27,12 +30,14 @@ import {reducer} from './shared/reducers/task.reducer';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({
-      task: reducer
-    }),
+    // StoreModule.forRoot({
+    //   task: reducer
+    // }),
     ReactiveFormsModule,
     NgbModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
+    EffectsModule.forRoot(effects)
   ],
   providers: [
     UserService,
